@@ -5,17 +5,17 @@ import java.util.concurrent.TimeUnit;
 public class Principal {
 
 	public static void main(String[] args) {
-		Double a[][] = new Double[2][];
-		Double b[][] = new Double[3][];
+		Double a[][] = new Double[50][50];
+		Double b[][] = new Double[50][50];
 
 		// coloca valores nasduas matrizes...
 		inicializaMatrizes(a, b);
 
 		// mostra as duas matrizes criadas...
-		System.out.print("MATRIZ A");
-		System.out.println(toString(a));
-		System.out.print("\nMATRIZ B");
-		System.out.println(toString(b));
+		// System.out.print("MATRIZ A");
+		// System.out.println(toString(a));
+		// System.out.print("\nMATRIZ B");
+		// System.out.println(toString(b));
 
 		// a matriz c conter� o resultado do produto...
 		Container c[][] = new Container[a.length][b[0].length];
@@ -32,8 +32,8 @@ public class Principal {
 		System.out.println("Duração do processo: " + tempoDecorrido / 1000.0 + "s");
 
 		// mostra o produto na tela...
-		System.out.print("\nMATRIZ PRODUTO");
-		System.out.println(toStringContainer(c));
+		// System.out.print("\nMATRIZ PRODUTO");
+		// System.out.println(toStringContainer(c));
 
 	}
 
@@ -156,12 +156,22 @@ public class Principal {
 	 * @param m2
 	 */
 	private static void inicializaMatrizes(Double m1[][], Double m2[][]) {
-		m1[0] = new Double[] { 1.0, 2.0, 3.0 };
-		m1[1] = new Double[] { 2.0, 4.0, 2.0 };
+		int linhas = m1.length;
+		int colunas = m1[0].length;
 
-		m2[0] = new Double[] { 3.0, 4.0 };
-		m2[1] = new Double[] { 3.0, 1.0 };
-		m2[2] = new Double[] { 2.0, 3.0 };
+		for (int i = 0; i < linhas; i++) {
+			for (int j = 0; j < colunas; j++) {
+				m1[i][j] = Math.random();
+			}
+		}
+
+		linhas = m2.length;
+		colunas = m2[0].length;
+		for (int i = 0; i < linhas; i++) {
+			for (int j = 0; j < colunas; j++) {
+				m2[i][j] = Math.random();
+			}
+		}
 	}
 
 	/**
