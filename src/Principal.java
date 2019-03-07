@@ -11,7 +11,7 @@ public class Principal {
 		System.out.println(toString(a));
 		System.out.println(toString(b));
 
-		// a matriz c conterá o resultado do produto...
+		// a matriz c conterï¿½ o resultado do produto...
 		Double c[][] = new Double[a.length][b[0].length];
 		inicializaMatriz(c, 1.0);
 
@@ -30,7 +30,7 @@ public class Principal {
 	 * @param m2
 	 * @param mp
 	 *            guarda o resultado de m1 x m2. Precisa estar inicializada ao ser
-	 *            passada par este método
+	 *            passada par este mï¿½todo
 	 */
 	private static void produtoMatricial(Double[][] m1, Double[][] m2, Double[][] mp) {
 		int linhasDeA = m1.length;
@@ -47,12 +47,12 @@ public class Principal {
 	}
 
 	/**
-	 * Obtém m vetor contendo os elementos de uma linha específica de uma matriz
+	 * Obtï¿½m m vetor contendo os elementos de uma linha especï¿½fica de uma matriz
 	 * 
 	 * @param m
 	 *            matriz
 	 * @param numeroDaLinha
-	 *            número da linha de onde os elementos devem ser retirados
+	 *            nï¿½mero da linha de onde os elementos devem ser retirados
 	 * @return
 	 */
 	private static Double[] obtemLinhaComoVetor(Double[][] m, int numeroDaLinha) {
@@ -60,12 +60,12 @@ public class Principal {
 	}
 
 	/**
-	 * Obtém um vetor contendo os elementos de uma coluna específica de uma matriz.
+	 * Obtï¿½m um vetor contendo os elementos de uma coluna especï¿½fica de uma matriz.
 	 * 
 	 * @param m
 	 *            matriz
 	 * @param numeroDaColuna
-	 *            número da coluna de onde os elementos devem ser retirados
+	 *            nï¿½mero da coluna de onde os elementos devem ser retirados
 	 * @return
 	 */
 	private static Double[] obtemColunaComoVetor(Double[][] m, int numeroDaColuna) {
@@ -117,8 +117,8 @@ public class Principal {
 	}
 
 	/**
-	 * Inicializa as matrizes passadas como parâmetro. O produto m1 e m2 deve ser
-	 * possível e o código não está verificando isso, portanto, cuidado na hora de
+	 * Inicializa as matrizes passadas como parï¿½metro. O produto m1 e m2 deve ser
+	 * possï¿½vel e o cï¿½digo nï¿½o estï¿½ verificando isso, portanto, cuidado na hora de
 	 * inserir as matrizes.
 	 * 
 	 * @param m1
@@ -134,7 +134,7 @@ public class Principal {
 	}
 
 	/**
-	 * Gera uma string da matriz m em formato amigável.
+	 * Gera uma string da matriz m em formato amigï¿½vel.
 	 * 
 	 * @param m
 	 * @return
@@ -154,7 +154,7 @@ public class Principal {
 	}
 
 	/**
-	 * Gera uma string do vetor v em formato amigável.
+	 * Gera uma string do vetor v em formato amigï¿½vel.
 	 * 
 	 * @param v
 	 * @return
