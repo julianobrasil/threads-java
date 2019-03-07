@@ -8,7 +8,9 @@ public class Principal {
 		inicializaMatrizes(a, b);
 
 		// mostra as duas matrizes criadas...
+		System.out.print("MATRIZ A");
 		System.out.println(toString(a));
+		System.out.print("\nMATRIZ B");
 		System.out.println(toString(b));
 
 		// a matriz c conter� o resultado do produto...
@@ -19,6 +21,7 @@ public class Principal {
 		produtoMatricial(a, b, c);
 
 		// mostra o produto na tela...
+		System.out.print("\nMATRIZ PRODUTO");
 		System.out.println(toString(c));
 
 	}
@@ -40,14 +43,18 @@ public class Principal {
 			for (int j = 0; j < colunasDeB; j++) {
 				Double linha[] = obtemLinhaComoVetor(m1, i);
 				Double coluna[] = obtemColunaComoVetor(m2, j);
-				mp[i][j] = produtoEscalar(linha, coluna);
+				// NOTE QUE, AGORA, TEMOS UMA THREAD PARA CALCULAR O PRODUTO ESCALAR, MAS ALGO
+				// AINDA ESTÁ ERRADO...
+				Thread a = new ProdutoEscalar(linha, coluna, mp[i][j], i, j);
+
+				a.start();
 			}
 		}
 
 	}
 
 	/**
-	 * Obt�m m vetor contendo os elementos de uma linha espec�fica de uma matriz
+	 * Obtém m vetor contendo os elementos de uma linha espec�fica de uma matriz
 	 * 
 	 * @param m
 	 *            matriz
@@ -78,25 +85,6 @@ public class Principal {
 		}
 
 		return v;
-	}
-
-	/**
-	 * Faz o produto escalar de dois vetores
-	 * 
-	 * @param v1
-	 * @param v2
-	 * @return
-	 */
-	private static Double produtoEscalar(Double[] v1, Double[] v2) {
-		int colunas = v1.length;
-
-		Double acumulador = 0.0;
-
-		for (int i = 0; i < colunas; i++) {
-			acumulador += v1[i] * v2[i];
-		}
-
-		return acumulador;
 	}
 
 	/**
