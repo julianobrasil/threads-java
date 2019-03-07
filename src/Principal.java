@@ -1,25 +1,31 @@
 public class Principal {
 
 	public static void main(String[] args) {
-		Double a[][] = new Double[2][];
-		Double b[][] = new Double[3][];
+		Double a[][] = new Double[500][500];
+		Double b[][] = new Double[500][500];
 
 		// coloca valores nasduas matrizes...
 		inicializaMatrizes(a, b);
 
 		// mostra as duas matrizes criadas...
-		System.out.println(toString(a));
-		System.out.println(toString(b));
+		// System.out.println(toString(a));
+		// System.out.println(toString(b));
 
-		// a matriz c conterá o resultado do produto...
+		// a matriz c conterï¿½ o resultado do produto...
 		Double c[][] = new Double[a.length][b[0].length];
 		inicializaMatriz(c, 1.0);
+
+		long inicio = System.currentTimeMillis();
 
 		// realiza o produto matricial...
 		produtoMatricial(a, b, c);
 
+		long fim = System.currentTimeMillis();
+		long tempoDecorrido = fim - inicio;
+
+		System.out.println("Tempo decorrido: " + tempoDecorrido / 1000 + "s");
 		// mostra o produto na tela...
-		System.out.println(toString(c));
+		// System.out.println(toString(c));
 
 	}
 
@@ -30,7 +36,7 @@ public class Principal {
 	 * @param m2
 	 * @param mp
 	 *            guarda o resultado de m1 x m2. Precisa estar inicializada ao ser
-	 *            passada par este método
+	 *            passada par este mï¿½todo
 	 */
 	private static void produtoMatricial(Double[][] m1, Double[][] m2, Double[][] mp) {
 		int linhasDeA = m1.length;
@@ -47,12 +53,12 @@ public class Principal {
 	}
 
 	/**
-	 * Obtém m vetor contendo os elementos de uma linha específica de uma matriz
+	 * Obtï¿½m m vetor contendo os elementos de uma linha especï¿½fica de uma matriz
 	 * 
 	 * @param m
 	 *            matriz
 	 * @param numeroDaLinha
-	 *            número da linha de onde os elementos devem ser retirados
+	 *            nï¿½mero da linha de onde os elementos devem ser retirados
 	 * @return
 	 */
 	private static Double[] obtemLinhaComoVetor(Double[][] m, int numeroDaLinha) {
@@ -60,12 +66,12 @@ public class Principal {
 	}
 
 	/**
-	 * Obtém um vetor contendo os elementos de uma coluna específica de uma matriz.
+	 * Obtï¿½m um vetor contendo os elementos de uma coluna especï¿½fica de uma matriz.
 	 * 
 	 * @param m
 	 *            matriz
 	 * @param numeroDaColuna
-	 *            número da coluna de onde os elementos devem ser retirados
+	 *            nï¿½mero da coluna de onde os elementos devem ser retirados
 	 * @return
 	 */
 	private static Double[] obtemColunaComoVetor(Double[][] m, int numeroDaColuna) {
@@ -117,24 +123,34 @@ public class Principal {
 	}
 
 	/**
-	 * Inicializa as matrizes passadas como parâmetro. O produto m1 e m2 deve ser
-	 * possível e o código não está verificando isso, portanto, cuidado na hora de
+	 * Inicializa as matrizes passadas como parï¿½metro. O produto m1 e m2 deve ser
+	 * possï¿½vel e o cï¿½digo nï¿½o estï¿½ verificando isso, portanto, cuidado na hora de
 	 * inserir as matrizes.
 	 * 
 	 * @param m1
 	 * @param m2
 	 */
 	private static void inicializaMatrizes(Double m1[][], Double m2[][]) {
-		m1[0] = new Double[] { 1.0, 2.0, 3.0 };
-		m1[1] = new Double[] { 2.0, 4.0, 2.0 };
+		int linhas = m1.length;
+		int colunas = m1[0].length;
 
-		m2[0] = new Double[] { 3.0, 4.0 };
-		m2[1] = new Double[] { 3.0, 1.0 };
-		m2[2] = new Double[] { 2.0, 3.0 };
+		for (int i = 0; i < linhas; i++) {
+			for (int j = 0; j < colunas; j++) {
+				m1[i][j] = Math.random();
+			}
+		}
+
+		linhas = m2.length;
+		colunas = m2[0].length;
+		for (int i = 0; i < linhas; i++) {
+			for (int j = 0; j < colunas; j++) {
+				m2[i][j] = Math.random();
+			}
+		}
 	}
 
 	/**
-	 * Gera uma string da matriz m em formato amigável.
+	 * Gera uma string da matriz m em formato amigï¿½vel.
 	 * 
 	 * @param m
 	 * @return
@@ -154,7 +170,7 @@ public class Principal {
 	}
 
 	/**
-	 * Gera uma string do vetor v em formato amigável.
+	 * Gera uma string do vetor v em formato amigï¿½vel.
 	 * 
 	 * @param v
 	 * @return
