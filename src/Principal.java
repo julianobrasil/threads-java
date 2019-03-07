@@ -133,8 +133,7 @@ public class Principal {
 		int linhas = m.length;
 
 		for (int i = 0; i < linhas; i++) {
-			System.out.println();
-			toString(m[i]);
+			str += "\n" + toString(m[i]);
 		}
 
 		return str;
@@ -153,7 +152,7 @@ public class Principal {
 		int elementos = v.length;
 
 		for (int i = 0; i < elementos; i++) {
-			System.out.print(v[i] + " ");
+			str += v[i] + " ";
 		}
 
 		return str;

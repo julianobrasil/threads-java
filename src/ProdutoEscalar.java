@@ -38,23 +38,4 @@ public class ProdutoEscalar extends Thread {
 
 		return acumulador;
 	}
-
-	/**
-	 * Gera uma string do vetor v em formato amig�vel.
-	 * 
-	 * @param v
-	 * @return
-	 */
-	private String toString(Double v[]) {
-		String str = "";
-
-		int elementos = v.length;
-
-		for (int i = 0; i < elementos; i++) {
-			System.out.print(v[i] + " ");
-		}
-
-		return str;
-
-	}
 }
