@@ -1,3 +1,7 @@
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 public class Principal {
 
 	public static void main(String[] args) {
@@ -17,8 +21,15 @@ public class Principal {
 		Container c[][] = new Container[a.length][b[0].length];
 		inicializaMatriz(c, 1.0);
 
+		long inicio = System.currentTimeMillis();
+
 		// realiza o produto matricial...
 		produtoMatricial(a, b, c);
+
+		long fim = System.currentTimeMillis();
+		long tempoDecorrido = fim - inicio;
+
+		System.out.println("Duração do processo: " + tempoDecorrido / 1000.0 + "s");
 
 		// mostra o produto na tela...
 		System.out.print("\nMATRIZ PRODUTO");
@@ -39,18 +50,50 @@ public class Principal {
 		int linhasDeA = m1.length;
 		int colunasDeB = m2[0].length;
 
+		ExecutorService executorService = Executors.newFixedThreadPool(linhasDeA * colunasDeB);
+
 		for (int i = 0; i < linhasDeA; i++) {
 			for (int j = 0; j < colunasDeB; j++) {
 				Double linha[] = obtemLinhaComoVetor(m1, i);
 				Double coluna[] = obtemColunaComoVetor(m2, j);
-				// NOTE QUE, AGORA, TEMOS UMA THREAD PARA CALCULAR O PRODUTO ESCALAR, MAS ALGO
-				// AINDA ESTÁ ERRADO...
-				Thread a = new ProdutoEscalar(linha, coluna, mp[i][j], i, j);
 
-				a.start();
+				ProdutoEscalar a = new ProdutoEscalar(linha, coluna, mp[i][j]);
+
+				Runnable tarefa = () -> {
+					a.produtoEscalar();
+				};
+
+				executorService.submit(tarefa);
+
 			}
 		}
 
+		executorService.shutdown();
+		try {
+			executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+		} catch (InterruptedException e) {
+		}
+
+	}
+
+	/**
+	 * Faz o produto escalar de dois vetores
+	 * 
+	 * @param v1
+	 * @param v2
+	 * @param r
+	 * @return
+	 */
+	private void produtoEscalar(Double[] v1, Double[] v2, Container r) {
+		int colunas = v1.length;
+
+		Double acumulador = 0.0;
+
+		for (int i = 0; i < colunas; i++) {
+			acumulador += v1[i] * v2[i];
+		}
+
+		r.valor = acumulador;
 	}
 
 	/**

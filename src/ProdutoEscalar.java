@@ -1,23 +1,13 @@
 
-public class ProdutoEscalar extends Thread {
+public class ProdutoEscalar {
 	Double m1[];
 	Double m2[];
 	Container resultado;
-	int linha;
-	int coluna;
 
-	public ProdutoEscalar(Double m1[], Double m2[], Container r, int linha, int coluna) {
+	public ProdutoEscalar(Double m1[], Double m2[], Container r) {
 		this.m1 = m1;
 		this.m2 = m2;
 		this.resultado = r;
-		this.linha = linha;
-		this.coluna = coluna;
-	}
-
-	@Override
-	public void run() {
-		this.produtoEscalar(this.m1, this.m2, this.resultado);
-		System.out.println("\nThread: linha " + this.linha + ", coluna " + this.coluna);
 	}
 
 	/**
@@ -28,16 +18,16 @@ public class ProdutoEscalar extends Thread {
 	 * @param r
 	 * @return
 	 */
-	private void produtoEscalar(Double[] v1, Double[] v2, Container r) {
-		int colunas = v1.length;
+	public void produtoEscalar() {
+		int colunas = m1.length;
 
 		Double acumulador = 0.0;
 
 		for (int i = 0; i < colunas; i++) {
-			acumulador += v1[i] * v2[i];
+			acumulador += m1[i] * m2[i];
 		}
 
-		r.valor = acumulador;
+		resultado.valor = acumulador;
 	}
 
 }
