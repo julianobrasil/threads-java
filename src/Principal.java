@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -5,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 public class Principal {
 
 	public static void main(String[] args) {
-		Double a[][] = new Double[50][50];
-		Double b[][] = new Double[50][50];
+		Double a[][] = new Double[100][100];
+		Double b[][] = new Double[100][100];
 
 		// coloca valores nasduas matrizes...
 		inicializaMatrizes(a, b);
@@ -51,7 +54,7 @@ public class Principal {
 		int colunasDeB = m2[0].length;
 
 		ExecutorService executorService = Executors.newFixedThreadPool(linhasDeA * colunasDeB);
-
+		List<Callable<Void>> callables = new ArrayList<>();
 		for (int i = 0; i < linhasDeA; i++) {
 			for (int j = 0; j < colunasDeB; j++) {
 				Double linha[] = obtemLinhaComoVetor(m1, i);
@@ -59,13 +62,19 @@ public class Principal {
 
 				ProdutoEscalar a = new ProdutoEscalar(linha, coluna, mp[i][j]);
 
-				Runnable tarefa = () -> {
+				Callable<Void> tarefa = () -> {
 					a.produtoEscalar();
+					return null;
 				};
 
-				executorService.submit(tarefa);
+				callables.add(tarefa);
 
 			}
+		}
+		try {
+			executorService.invokeAll(callables);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
 		}
 
 		executorService.shutdown();
