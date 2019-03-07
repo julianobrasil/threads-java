@@ -2,21 +2,21 @@
 public class ProdutoEscalar extends Thread {
 	Double m1[];
 	Double m2[];
-	Double produtoEscalar;
+	Container resultado;
 	int linha;
 	int coluna;
 
-	public ProdutoEscalar(Double m1[], Double m2[], Double r, int linha, int coluna) {
+	public ProdutoEscalar(Double m1[], Double m2[], Container r, int linha, int coluna) {
 		this.m1 = m1;
 		this.m2 = m2;
-		this.produtoEscalar = r;
+		this.resultado = r;
 		this.linha = linha;
 		this.coluna = coluna;
 	}
 
 	@Override
 	public void run() {
-		this.produtoEscalar = this.produtoEscalar(this.m1, this.m2);
+		this.produtoEscalar(this.m1, this.m2, this.resultado);
 		System.out.println("\nThread: linha " + this.linha + ", coluna " + this.coluna);
 	}
 
@@ -25,9 +25,10 @@ public class ProdutoEscalar extends Thread {
 	 * 
 	 * @param v1
 	 * @param v2
+	 * @param r
 	 * @return
 	 */
-	private Double produtoEscalar(Double[] v1, Double[] v2) {
+	private void produtoEscalar(Double[] v1, Double[] v2, Container r) {
 		int colunas = v1.length;
 
 		Double acumulador = 0.0;
@@ -36,25 +37,7 @@ public class ProdutoEscalar extends Thread {
 			acumulador += v1[i] * v2[i];
 		}
 
-		return acumulador;
+		r.valor = acumulador;
 	}
 
-	/**
-	 * Gera uma string do vetor v em formato amig�vel.
-	 * 
-	 * @param v
-	 * @return
-	 */
-	private String toString(Double v[]) {
-		String str = "";
-
-		int elementos = v.length;
-
-		for (int i = 0; i < elementos; i++) {
-			System.out.print(v[i] + " ");
-		}
-
-		return str;
-
-	}
 }

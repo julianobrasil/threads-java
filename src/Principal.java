@@ -14,7 +14,7 @@ public class Principal {
 		System.out.println(toString(b));
 
 		// a matriz c conter� o resultado do produto...
-		Double c[][] = new Double[a.length][b[0].length];
+		Container c[][] = new Container[a.length][b[0].length];
 		inicializaMatriz(c, 1.0);
 
 		// realiza o produto matricial...
@@ -22,7 +22,7 @@ public class Principal {
 
 		// mostra o produto na tela...
 		System.out.print("\nMATRIZ PRODUTO");
-		System.out.println(toString(c));
+		System.out.println(toStringContainer(c));
 
 	}
 
@@ -35,7 +35,7 @@ public class Principal {
 	 *            guarda o resultado de m1 x m2. Precisa estar inicializada ao ser
 	 *            passada par este m�todo
 	 */
-	private static void produtoMatricial(Double[][] m1, Double[][] m2, Double[][] mp) {
+	private static void produtoMatricial(Double[][] m1, Double[][] m2, Container[][] mp) {
 		int linhasDeA = m1.length;
 		int colunasDeB = m2[0].length;
 
@@ -93,13 +93,13 @@ public class Principal {
 	 * @param m
 	 * @param valor
 	 */
-	private static void inicializaMatriz(Double[][] m, Double valor) {
+	private static void inicializaMatriz(Container[][] m, Double valor) {
 		int linhas = m.length;
 		int colunas = m[0].length;
 
 		for (int i = 0; i < linhas; i++) {
 			for (int j = 0; j < colunas; j++) {
-				m[i][j] = valor;
+				m[i][j] = new Container(valor);
 			}
 		}
 	}
@@ -133,8 +133,7 @@ public class Principal {
 		int linhas = m.length;
 
 		for (int i = 0; i < linhas; i++) {
-			System.out.println();
-			toString(m[i]);
+			str += "\n" + toString(m[i]);
 		}
 
 		return str;
@@ -153,7 +152,45 @@ public class Principal {
 		int elementos = v.length;
 
 		for (int i = 0; i < elementos; i++) {
-			System.out.print(v[i] + " ");
+			str += v[i] + " ";
+		}
+
+		return str;
+
+	}
+
+	/**
+	 * Gera uma string da matriz m em formato amig�vel.
+	 * 
+	 * @param m
+	 * @return
+	 */
+	private static String toStringContainer(Container m[][]) {
+		String str = "";
+
+		int linhas = m.length;
+
+		for (int i = 0; i < linhas; i++) {
+			str += "\n" + toStringContainer(m[i]);
+		}
+
+		return str;
+
+	}
+
+	/**
+	 * Gera uma string do vetor v em formato amig�vel.
+	 * 
+	 * @param v
+	 * @return
+	 */
+	private static String toStringContainer(Container v[]) {
+		String str = "";
+
+		int elementos = v.length;
+
+		for (int i = 0; i < elementos; i++) {
+			str += v[i].valor + " ";
 		}
 
 		return str;
