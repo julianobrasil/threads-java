@@ -122,7 +122,7 @@ public class Principal {
 	}
 
 	/**
-	 * Gera uma string da matriz m em formato amig�vel.
+	 * Gera uma string da matriz m em formato amigável.
 	 * 
 	 * @param m
 	 * @return
@@ -137,11 +137,10 @@ public class Principal {
 		}
 
 		return str;
-
 	}
 
 	/**
-	 * Gera uma string do vetor v em formato amig�vel.
+	 * Gera uma string do vetor v em formato amigável.
 	 * 
 	 * @param v
 	 * @return
@@ -156,7 +155,6 @@ public class Principal {
 		}
 
 		return str;
-
 	}
 
 }
